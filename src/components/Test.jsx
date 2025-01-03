@@ -2,7 +2,8 @@ import { data } from "../mocks/data"
 
 export const Test = () => {
   let randomQuestion = Math.floor(Math.random() * data.length)
-  const shuffledAnswers = data[randomQuestion].answers.sort(() => Math.random() - 0.5)
+  const shuffledAnswers = data[randomQuestion].answers.toSorted(() => Math.random() - 0.5)
+
   return (
     <div className="test">
       <h1>Тестирование</h1>
