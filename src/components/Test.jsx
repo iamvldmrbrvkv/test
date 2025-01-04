@@ -1,10 +1,12 @@
-import { data } from "../mocks/data/data"
+/* import { data } from "../mocks/data/data"
+import { useEffect } from "react" */
+import { useGetDataQuery } from "../features/api/apiSlice"
 
 export const Test = () => {
-  let randomQuestion = Math.floor(Math.random() * data.length)
-  const shuffledAnswers = data[randomQuestion].answers.toSorted(() => Math.random() - 0.5)
+  /* let randomQuestion = Math.floor(Math.random() * data.length)
+  const shuffledAnswers = data[randomQuestion].answers.toSorted(() => Math.random() - 0.5) */
   
-  const getData = async () => {
+  /* const getData = async () => {
     const endpoint = "/data"
     try {
       const response = await fetch(endpoint)
@@ -18,8 +20,21 @@ export const Test = () => {
       console.error(error)
     }
   }
-  getData()
-  return (
+
+  useEffect(() => {
+    getData()
+  }, []) */
+  const {
+    data = [],
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetDataQuery();
+
+  console.log(data)
+
+  /* return (
     <div className="test">
       <h1>Тестирование</h1>
       {!data[randomQuestion].answered ? (
@@ -35,5 +50,14 @@ export const Test = () => {
         </>
       ) : <p>Вы ответили на все вопросы</p>}
     </div>
-  )
+  ) */
+
+    return (
+      <div className="test">
+        <h1>Тестирование</h1>
+        {isLoading && <p>Загрузка...</p>}
+        {isSuccess && <p>Данные загружены</p>}
+        {isError && <p>Ошибка: {error}</p>}
+      </div>
+    )
 }
