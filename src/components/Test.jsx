@@ -1,40 +1,29 @@
-/* import { data } from "../mocks/data/data"
-import { useEffect } from "react" */
-import { useGetDataQuery } from "../features/api/apiSlice"
+import { useGetTestQuery } from "../features/api/apiSlice"
 
 export const Test = () => {
-  /* let randomQuestion = Math.floor(Math.random() * data.length)
-  const shuffledAnswers = data[randomQuestion].answers.toSorted(() => Math.random() - 0.5) */
-  
-  /* const getData = async () => {
-    const endpoint = "/data"
-    try {
-      const response = await fetch(endpoint)
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-      } else {
-        throw new Error("Request failed")
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    getData()
-  }, []) */
   const {
     data = [],
     isLoading,
     isSuccess,
     isError,
-    error
-  } = useGetDataQuery();
+    error,
+    refetch
+  } = useGetTestQuery();
 
-  console.log(data)
+  let randomQuestion
+  let shuffledAnswers
 
-  /* return (
+  if (data.length > 0) {
+    randomQuestion = Math.floor(Math.random() * data.length)
+    shuffledAnswers = data[randomQuestion].answers
+      .map(answer => answer.replace(/[+()]/g, ''))
+      .toSorted(() => Math.random() - 0.5)
+  }
+
+  if (isLoading) return <div className="test">Loading...</div>;
+  if (isError) return <div className="test">Error: {error.message}</div>;
+
+  return (
     <div className="test">
       <h1>Тестирование</h1>
       {!data[randomQuestion].answered ? (
@@ -49,15 +38,7 @@ export const Test = () => {
           ))}
         </>
       ) : <p>Вы ответили на все вопросы</p>}
+      <button onClick={refetch}>Начать сначала</button>
     </div>
-  ) */
-
-    return (
-      <div className="test">
-        <h1>Тестирование</h1>
-        {isLoading && <p>Загрузка...</p>}
-        {isSuccess && <p>Данные загружены</p>}
-        {isError && <p>Ошибка: {error}</p>}
-      </div>
-    )
+  )
 }

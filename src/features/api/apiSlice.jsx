@@ -4,10 +4,10 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '' }),
   endpoints: (builder) => ({
-    getData: builder.query({
+    getTest: builder.query({
       query: () => '/data',
     }),
   }),
 });
 
-export const { useGetDataQuery } = apiSlice;
+export const { useGetTestQuery } = apiSlice;
