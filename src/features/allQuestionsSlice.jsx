@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { data } from "../mocks/data";
+import { data } from "../mocks/data/data";
 
 const initialState = data;
 

@@ -1,9 +1,24 @@
-import { data } from "../mocks/data"
+import { data } from "../mocks/data/data"
 
 export const Test = () => {
   let randomQuestion = Math.floor(Math.random() * data.length)
   const shuffledAnswers = data[randomQuestion].answers.toSorted(() => Math.random() - 0.5)
-
+  
+  const getData = async () => {
+    const endpoint = "/data"
+    try {
+      const response = await fetch(endpoint)
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+      } else {
+        throw new Error("Request failed")
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  getData()
   return (
     <div className="test">
       <h1>Тестирование</h1>
