@@ -22,12 +22,10 @@ export const Test = () => {
           if (draft[index]) {
             draft[index].answered = true;
   
-            // Проверяем правильность ответа
             const isCorrect = draft[index].answers.some(answer => 
               answer.includes('+') && answer.includes(e.target.value)
             );
   
-            // Добавляем "-)" к неправильным ответам
             if (!isCorrect) {
               draft[index].answers = draft[index].answers.map(answer => 
                 answer.includes(e.target.value) ? `${answer}(-)` : answer
@@ -63,12 +61,13 @@ export const Test = () => {
 
   return (
     <div className="test">
-      <h1>Тестирование</h1>
       {unansweredQuestions.length > 0 ? (
         <>
+
+          <h1>Тестирование</h1>
           <h2>{randomQuestion.question}</h2>
           {shuffledAnswers.map((answer, index) => (
-            <div key={`answer${index}`}>
+            <div className="answer" key={`answer${index}`}>
               <input 
                 type="radio"
                 name="answer"
