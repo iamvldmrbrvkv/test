@@ -83,3 +83,16 @@ h2 {
 input:checked + label {
   color: red;
 }
+
+.answer {
+  border-radius: 20px;
+}
+
+.correct {
+  /* border-radius: 20px; */
+  background: #E5F5E1;
+}
+.incorrect {
+  /* border-radius: 20px; */
+  background: #FFE0E0;
+}

@@ -1,4 +1,7 @@
 import { useGetTestQuery } from "../features/api/apiSlice"
+import { apiSlice } from "../features/api/apiSlice";
+import { useDispatch } from "react-redux";
+import { Results } from "./Results";
 
 export const Test = () => {
   const {
@@ -10,15 +13,50 @@ export const Test = () => {
     refetch
   } = useGetTestQuery();
 
+  const dispatch = useDispatch()
+
+  const handleAnswer = (e, index) => {
+    setTimeout(() => {
+      dispatch(
+        apiSlice.util.updateQueryData('getTest', undefined, (draft) => {
+          if (draft[index]) {
+            draft[index].answered = true;
+  
+            // Проверяем правильность ответа
+            const isCorrect = draft[index].answers.some(answer => 
+              answer.includes('+') && answer.includes(e.target.value)
+            );
+  
+            // Добавляем "-)" к неправильным ответам
+            if (!isCorrect) {
+              draft[index].answers = draft[index].answers.map(answer => 
+                answer.includes(e.target.value) ? `${answer}(-)` : answer
+              );
+            } else {
+              draft[index].correct = true;
+            }
+          }
+          e.target.checked = false;
+        })
+      );
+    }, 1000);
+  };
+  
+
+  let randomIndex
   let randomQuestion
   let shuffledAnswers
 
-  if (data.length > 0) {
-    randomQuestion = Math.floor(Math.random() * data.length)
-    shuffledAnswers = data[randomQuestion].answers
+  const unansweredQuestions = data.filter((item) => !item.answered);
+
+  if (unansweredQuestions.length > 0) {
+    randomIndex = Math.floor(Math.random() * unansweredQuestions.length)
+    randomQuestion = unansweredQuestions[randomIndex]
+    shuffledAnswers = randomQuestion.answers
       .map(answer => answer.replace(/[+()]/g, ''))
       .toSorted(() => Math.random() - 0.5)
   }
+  const originalIndex = data.indexOf(randomQuestion);
 
   if (isLoading) return <div className="test">Loading...</div>;
   if (isError) return <div className="test">Error: {error.message}</div>;
@@ -26,19 +64,25 @@ export const Test = () => {
   return (
     <div className="test">
       <h1>Тестирование</h1>
-      {!data[randomQuestion].answered ? (
+      {unansweredQuestions.length > 0 ? (
         <>
-          <h2>{data[randomQuestion].question}</h2>
+          <h2>{randomQuestion.question}</h2>
           {shuffledAnswers.map((answer, index) => (
-            <div key={index}>
-              <input type="radio" name="answer" id={`answer${index}`} required />
+            <div key={`answer${index}`}>
+              <input 
+                type="radio"
+                name="answer"
+                value={answer}
+                id={`answer${index}`}
+                required
+                onChange={(e) => handleAnswer(e, originalIndex)}
+              />
               <label htmlFor={`answer${index}`}>{answer}</label>
               <br />
             </div>
           ))}
         </>
-      ) : <p>Вы ответили на все вопросы</p>}
-      <button onClick={refetch}>Начать сначала</button>
+      ) : <Results data={data} refetch={refetch} />}
     </div>
   )
 }
