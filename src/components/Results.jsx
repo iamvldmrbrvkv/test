@@ -8,17 +8,18 @@ export const Results = ({ data, refetch }) => {
           {item.answers.map((answer, i) => (
             answer.includes('(+)') && item.correct ? (
               <p key={i + answer}>
-                {answer.replace(/[+()]/g, '')}
+                {answer.replace(/\(\+\)/g, '').trim()}
               </p>
             ) : answer.includes('(-)') ? (
               <p key={i + answer}>
-                {answer.replace(/[-()]/g, '')}
+                {answer.replace(/\(\-\)/g, '').trim()}
               </p>
             ) : null
           ))}
         </div>
       ))}
       <button onClick={refetch}>Начать сначала</button>
+      {console.log(data[7].answers)}
     </>
   );
 };

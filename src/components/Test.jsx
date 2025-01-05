@@ -23,12 +23,12 @@ export const Test = () => {
             draft[index].answered = true;
   
             const isCorrect = draft[index].answers.some(answer => 
-              answer.includes('+') && answer.includes(e.target.value)
+              answer.includes('(+)') && answer.includes(e.target.value)
             );
-  
+
             if (!isCorrect) {
               draft[index].answers = draft[index].answers.map(answer => 
-                answer.includes(e.target.value) ? `${answer}(-)` : answer
+                answer.includes(e.target.value) ? `${answer} (-)` : answer
               );
             } else {
               draft[index].correct = true;
@@ -51,7 +51,7 @@ export const Test = () => {
     randomIndex = Math.floor(Math.random() * unansweredQuestions.length)
     randomQuestion = unansweredQuestions[randomIndex]
     shuffledAnswers = randomQuestion.answers
-      .map(answer => answer.replace(/[+()]/g, ''))
+      .map(answer => answer.replace(/\(\+\)/g, '').trim())
       .toSorted(() => Math.random() - 0.5)
   }
   const originalIndex = data.indexOf(randomQuestion);
