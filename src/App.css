@@ -128,6 +128,7 @@ p {
 .refetch {
   width: 220px;
   height: 54px;
+  font-size: 18px;
   border-radius: 10px;
   background: #3300FF;
   color: white;
