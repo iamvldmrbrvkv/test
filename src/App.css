@@ -59,9 +59,15 @@ html {
   top: 82px;
   left: 277px;
   width: 886px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.questions {
   background: #F7F7F7;
   border-radius: 20px;
   padding: 20px;
+  margin: 20px 0;
 }
 
 body {
@@ -82,6 +88,9 @@ h2 {
 
 .answer {
   margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 label {
@@ -124,9 +133,7 @@ p {
   color: white;
   margin: 0 auto;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   cursor: pointer;
 }
 
@@ -135,7 +142,75 @@ p {
   top: 82px;
   left: 277px;
   width: 886px;
-  /* background: #F7F7F7; */
   border-radius: 20px;
   padding: 20px;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: 58px;
+  margin: 20px 0;
+}
+
+.progress-labels {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+}
+
+span {
+  font-size: 16px;
+  line-height: 19.5px;
+  font-weight: 700;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.progress-bar {
+  height: 12px;
+  background-color: #3300FF;
+  border-radius: 6px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  transition: left 0.3s ease-in-out;
+}
+
+input[type="radio"] {
+  min-width: 20px;
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="radio"]:checked {
+  background-color: #3300FF;
+  border-color: #3300FF;
 }

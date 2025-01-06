@@ -22,16 +22,16 @@ export const Results = ({ data, refetch }) => {
           <p>Вы неправильно ответили на {incorrectAnswers} вопросов. Нужно подучить теорию.</p>
         </>
       )}
-      {data.map((item, index) => (
-        <div key={index} className={item.correct ? 'correct' : 'incorrect'}>
-          <h2>{item.question}</h2>
-          {item.answers.map((answer, i) =>
-            answer.includes('(+)') && item.correct ? (
-              <p key={i + answer}>
+      {data.map((question, index) => (
+        <div key={`question${index}`} className={question.correct ? 'correct' : 'incorrect'}>
+          <h2>{question.question}</h2>
+          {question.answers.map((answer, i) =>
+            answer.includes('(+)') && question.correct ? (
+              <p key={`answer${index}`}>
                 {answer.replace(/\(\+\)/g, '').trim()}
               </p>
             ) : answer.includes('(-)') ? (
-              <p key={i + answer}>
+              <p key={`answer${index}`}>
                 {answer.replace(/\(\-\)/g, '').trim()}
               </p>
             ) : null

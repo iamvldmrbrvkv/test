@@ -56,6 +56,10 @@ export const Test = () => {
   }
   const originalIndex = data.indexOf(randomQuestion);
 
+  const answeredCount = data.filter((item) => item.answered).length;
+  const totalCount = data.length;
+  const progressPercent = totalCount > 0 ? (answeredCount / totalCount) * 100 : 0;
+
   if (isLoading) return <div className="test">Loading...</div>;
   if (isError) return <div className="test">Error: {error.message}</div>;
 
@@ -64,21 +68,38 @@ export const Test = () => {
       {unansweredQuestions.length > 0 ? (
         <div className="test">
           <h1>Тестирование</h1>
-          <h2>{randomQuestion.question}</h2>
-          {shuffledAnswers.map((answer, index) => (
-            <div className="answer" key={`answer${index}`}>
-              <input
-                type="radio"
-                name="answer"
-                value={answer}
-                id={`answer${index}`}
-                required
-                onChange={(e) => handleAnswer(e, originalIndex)}
-              />
-              <label htmlFor={`answer${index}`}>{answer}</label>
-              <br />
+          <div className="questions">
+            <h2>{randomQuestion.question}</h2>
+            {shuffledAnswers.map((answer, index) => (
+              <div className="answer" key={`answer${index}`}>
+                <input
+                  type="radio"
+                  name="answer"
+                  value={answer}
+                  id={`answer${index}`}
+                  required
+                  onChange={(e) => handleAnswer(e, originalIndex)}
+                />
+                <label htmlFor={`answer${index}`}>{answer}</label>
+                <br />
+              </div>
+            ))}
+          </div>
+          <div className="progress-container">
+            <div className="progress-labels">
+              <span className="start">0</span>
+              <span className="end">{totalCount}</span>
             </div>
-          ))}
+            <div className="progress-bar-wrapper">
+              <div className="progress-bar" style={{ width: `${progressPercent}%` }}></div>
+            </div>
+            <span
+              className="progress"
+              style={{ left: `calc(${progressPercent}% - 5px)` }}
+            >
+              {answeredCount === 0 ? "" : answeredCount}
+            </span>
+          </div>
         </div>
       ) : (
         <Results data={data} refetch={refetch} />
