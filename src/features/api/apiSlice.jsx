@@ -5,7 +5,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '' }),
   endpoints: (builder) => ({
     getTest: builder.query({
-      query: () => '',
+      query: () => '/https://gleaming-daifuku-653b76.netlify.app',
     }),
   }),
 });
