@@ -59,7 +59,6 @@ html {
   top: 82px;
   left: 277px;
   width: 886px;
-  border-radius: 20px;
   padding: 20px;
 }
 
@@ -143,7 +142,6 @@ p {
   top: 82px;
   left: 277px;
   width: 886px;
-  border-radius: 20px;
   padding: 20px;
 }
 
@@ -222,7 +220,6 @@ input[type="radio"]:checked {
     left: 10px;
     width: calc(100% - 20px);
     padding: 15px;
-    border-radius: 15px;
   }
 
   .questions {
@@ -272,7 +269,6 @@ input[type="radio"]:checked {
     width: 180px;
     height: 45px;
     font-size: 14px;
-    border-radius: 8px;
   }
 
   .progress-container {
