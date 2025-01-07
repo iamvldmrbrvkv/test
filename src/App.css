@@ -246,6 +246,10 @@ input[type="radio"]:checked {
     margin-left: 5px;
   }
 
+  span {
+    font-size: 14px;
+  }
+  
   .answer {
     margin: 15px 0;
     gap: 8px;
@@ -267,7 +271,7 @@ input[type="radio"]:checked {
   .refetch {
     width: 180px;
     height: 45px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 8px;
   }
 
