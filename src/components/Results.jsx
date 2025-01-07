@@ -1,44 +1,57 @@
 export const Results = ({ data, refetch }) => {
-  const correctAnswers = data.filter(element => element.correct).length;
+  const correctAnswers = data.filter((element) => element.correct).length;
   const incorrectAnswers = data.length - correctAnswers;
 
   return (
-    <div className="results">
+    <div className="test__results">
       {correctAnswers > 8 && (
         <>
-          <h1>Поздравляем! Вы успешно прошли тест!</h1>
-          <p>Вы правильно ответили на все вопросы. Вы действительно отлично разбираетесь в IT.</p>
+          <h1 className="test__title">Поздравляем! Вы успешно прошли тест!</h1>
+          <p className="test__text">
+            Вы правильно ответили на все вопросы. Вы действительно отлично
+            разбираетесь в IT.
+          </p>
         </>
       )}
       {correctAnswers > 4 && (
         <>
-          <h1>Хороший результат!</h1>
-          <p>Вы ответили правильно на 5 вопросов. Так держать!</p>
+          <h1 className="test__title">Хороший результат!</h1>
+          <p className="test__text">
+            Вы ответили правильно на {correctAnswers} вопросов. Так держать!
+          </p>
         </>
       )}
-      {correctAnswers < 4 && (
+      {correctAnswers <= 4 && (
         <>
-          <h1>Упс :(</h1>
-          <p>Вы неправильно ответили на {incorrectAnswers} вопросов. Нужно подучить теорию.</p>
+          <h1 className="test__title">Упс :(</h1>
+          <p className="test__text">
+            Вы неправильно ответили на {incorrectAnswers} вопросов. Нужно подучить
+            теорию.
+          </p>
         </>
       )}
       {data.map((question, index) => (
-        <div key={`question${index}`} className={question.correct ? 'correct' : 'incorrect'}>
-          <h2>{question.question}</h2>
+        <div
+          key={`question${index}`}
+          className={`test__message--${question.correct ? "correct" : "incorrect"}`}
+        >
+          <h2 className="test__subtitle">{question.question}</h2>
           {question.answers.map((answer, i) =>
-            answer.includes('(+)') && question.correct ? (
-              <p key={`answer${index}`}>
-                {answer.replace(/\(\+\)/g, '').trim()}
+            answer.includes("(+)") && question.correct ? (
+              <p key={`answer${index}`} className="test__text">
+                {answer.replace(/\(\+\)/g, "").trim()}
               </p>
-            ) : answer.includes('(-)') ? (
-              <p key={`answer${index}`}>
-                {answer.replace(/\(\-\)/g, '').trim()}
+            ) : answer.includes("(-)") ? (
+              <p key={`answer${index}`} className="test__text">
+                {answer.replace(/\(\-\)/g, "").trim()}
               </p>
             ) : null
           )}
         </div>
       ))}
-      <button className="refetch" onClick={refetch}>Пройти еще раз</button>
+      <button className="test__button" onClick={refetch}>
+        Пройти еще раз
+      </button>
     </div>
   );
 };

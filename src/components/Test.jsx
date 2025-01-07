@@ -4,15 +4,7 @@ import { useDispatch } from "react-redux";
 import { Results } from "./Results";
 
 export const Test = () => {
-  const {
-    data = [],
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-    refetch,
-  } = useGetTestQuery();
-
+  const { data = [], isLoading, isError, error, refetch } = useGetTestQuery();
   const dispatch = useDispatch();
 
   const handleAnswer = (e, index) => {
@@ -21,12 +13,9 @@ export const Test = () => {
         apiSlice.util.updateQueryData("getTest", undefined, (draft) => {
           if (draft[index]) {
             draft[index].answered = true;
-
             const isCorrect = draft[index].answers.some(
-              (answer) =>
-                answer.includes("(+)") && answer.includes(e.target.value)
+              (answer) => answer.includes("(+)") && answer.includes(e.target.value)
             );
-
             if (!isCorrect) {
               draft[index].answers = draft[index].answers.map((answer) =>
                 answer.includes(e.target.value) ? `${answer} (-)` : answer
@@ -41,19 +30,12 @@ export const Test = () => {
     }, 1000);
   };
 
-  let randomIndex;
-  let randomQuestion;
-  let shuffledAnswers;
-
   const unansweredQuestions = data.filter((item) => !item.answered);
-
-  if (unansweredQuestions.length > 0) {
-    randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
-    randomQuestion = unansweredQuestions[randomIndex];
-    shuffledAnswers = randomQuestion.answers
-      .map((answer) => answer.replace(/\(\+\)/g, "").trim())
-      .toSorted(() => Math.random() - 0.5);
-  }
+  const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
+  const randomQuestion = unansweredQuestions[randomIndex];
+  const shuffledAnswers = randomQuestion?.answers
+    .map((answer) => answer.replace(/\(\+\)/g, "").trim())
+    .toSorted(() => Math.random() - 0.5);
 
   const originalIndex = data.indexOf(randomQuestion);
   const answeredCount = data.filter((item) => item.answered).length;
@@ -67,11 +49,11 @@ export const Test = () => {
     <>
       {unansweredQuestions.length > 0 ? (
         <div className="test">
-          <h1>Тестирование</h1>
-          <div className="questions">
-            <h2>{randomQuestion.question}</h2>
+          <h1 className="test__title">Тестирование</h1>
+          <div className="test__questions">
+            <h2 className="test__subtitle">{randomQuestion.question}</h2>
             {shuffledAnswers.map((answer, index) => (
-              <div className="answer" key={`answer${index}`}>
+              <div className="test__answer" key={`answer${index}`}>
                 <input
                   type="radio"
                   name="answer"
@@ -80,21 +62,26 @@ export const Test = () => {
                   required
                   onChange={(e) => handleAnswer(e, originalIndex)}
                 />
-                <label htmlFor={`answer${index}`}>{answer}</label>
+                <label className="test__label" htmlFor={`answer${index}`}>
+                  {answer}
+                </label>
                 <br />
               </div>
             ))}
           </div>
-          <div className="progress-container">
-            <div className="progress-labels">
-              <span className="start">0</span>
-              <span className="end">{totalCount}</span>
+          <div className="test__progress-container">
+            <div className="test__progress-labels">
+              <span className="test__progress-label">0</span>
+              <span className="test__progress-label">{totalCount}</span>
             </div>
-            <div className="progress-bar-wrapper">
-              <div className="progress-bar" style={{ width: `${progressPercent}%` }}></div>
+            <div className="test__progress-bar-wrapper">
+              <div
+                className="test__progress-bar"
+                style={{ width: `${progressPercent}%` }}
+              ></div>
             </div>
             <span
-              className="progress"
+              className="test__progress"
               style={{ left: `calc(${progressPercent}% - 5px)` }}
             >
               {answeredCount === 0 ? "" : answeredCount}
