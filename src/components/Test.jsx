@@ -54,8 +54,8 @@ export const Test = () => {
       .map((answer) => answer.replace(/\(\+\)/g, "").trim())
       .toSorted(() => Math.random() - 0.5);
   }
-  const originalIndex = data.indexOf(randomQuestion);
 
+  const originalIndex = data.indexOf(randomQuestion);
   const answeredCount = data.filter((item) => item.answered).length;
   const totalCount = data.length;
   const progressPercent = totalCount > 0 ? (answeredCount / totalCount) * 100 : 0;

@@ -215,3 +215,73 @@ input[type="radio"]:checked {
   background-color: #3300FF;
   border-color: #3300FF;
 }
+
+@media (max-width: 768px) {
+  .test, .results {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .questions {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  label {
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 5px;
+  }
+
+  .answer {
+    margin: 15px 0;
+    gap: 8px;
+  }
+
+  .correct, .incorrect {
+    height: auto;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 15px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 15px 0;
+  }
+
+  .refetch {
+    width: 180px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .progress-container {
+    height: 50px;
+    margin: 15px 0;
+  }
+
+  .progress-labels {
+    font-size: 14px;
+  }
+
+  input[type="radio"] {
+    min-width: 18px;
+    min-height: 18px;
+  }
+}
