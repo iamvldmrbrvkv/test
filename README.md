@@ -3,7 +3,7 @@
 ## Задача:
 - Нужно разработать логику теста, с выводом результатов его прохождения.
 
-## Макет
+## Макет:
 - **[Figma](https://www.figma.com/design/RDAtzvSrxInNfo8Ch6lbwz/div.test_task.frontend?node-id=0%3A1&t=Qc5aVUDkZmubI4YX-1)**
 
 ## Логика:
