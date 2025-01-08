@@ -113,8 +113,8 @@ input[type="radio"]:checked {
 
 .test__label {
   font-size: 16px;
-  line-height: 19.5px;
   font-weight: 400;
+  line-height: 19.5px;
   margin-left: 10px;
 }
 
@@ -139,8 +139,8 @@ input[type="radio"]:checked {
 
 .test__progress-label {
   font-size: 16px;
-  line-height: 19.5px;
   font-weight: 700;
+  line-height: 19.5px;
 }
 
 .test__progress-bar-wrapper {
@@ -163,8 +163,8 @@ input[type="radio"]:checked {
 
 .test__progress {
   font-size: 16px;
-  line-height: 19.5px;
   font-weight: 700;
+  line-height: 19.5px;
   position: absolute;
   bottom: 0;
   transform: translateX(-50%);
@@ -198,8 +198,8 @@ input[type="radio"]:checked {
 }
 
 .test__subtitle--special {
-  font-weight: 700;
   font-size: 20px;
+  font-weight: 700;
   line-height: 24.38px;
 }
 
@@ -212,8 +212,8 @@ input[type="radio"]:checked {
 
 .test__text {
   font-size: 16px;
-  line-height: 22.4px;
   font-weight: 400;
+  line-height: 22.4px;
   margin: 20px 0;
 }
 
@@ -221,6 +221,7 @@ input[type="radio"]:checked {
   width: 220px;
   height: 54px;
   font-size: 18px;
+  font-weight: 700;
   line-height: 21.94px;
   border-radius: 10px;
   background: #3300FF;
