@@ -72,17 +72,17 @@ body {
   line-height: 58.51px;
 }
 
-.test__subtitle {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29.26px;
-}
-
 .test__questions {
   background: #F7F7F7;
   border-radius: 20px;
   padding: 20px;
   margin: 20px 0;
+}
+
+.test__subtitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29.26px;
 }
 
 .test__answer {
@@ -197,6 +197,19 @@ input[type="radio"]:checked {
   background: #FFE0E0;
 }
 
+.test__subtitle--special {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.38px;
+}
+
+.test__text--special {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 33.6px;
+  margin: 15px 0;
+}
+
 .test__text {
   font-size: 16px;
   line-height: 22.4px;
@@ -225,11 +238,6 @@ input[type="radio"]:checked {
     padding: 15px;
   }
 
-  .test__questions {
-    padding: 15px;
-    margin: 15px 0;
-  }
-
   .test__title {
     font-size: 32px;
     line-height: 40px;
@@ -240,20 +248,11 @@ input[type="radio"]:checked {
     line-height: 24px;
   }
 
-  .test__label {
-    font-size: 14px;
-    line-height: 17px;
-    margin-left: 5px;
+  .test__questions {
+    padding: 15px;
+    margin: 15px 0;
   }
 
-  .test__progress-label {
-    font-size: 14px;
-  }
-
-  .test__progress {
-    font-size: 14px;
-  }
-  
   .test__answer {
     margin: 15px 0;
     gap: 8px;
@@ -264,17 +263,10 @@ input[type="radio"]:checked {
     min-height: 18px;
   }
 
-  .test__message--correct,
-  .test__message--incorrect {
-    height: auto;
-    padding: 15px;
-    margin: 15px 0;
-  }
-
-  .test__text {
+  .test__label {
     font-size: 14px;
-    line-height: 18px;
-    margin: 15px 0;
+    line-height: 17px;
+    margin-left: 5px;
   }
 
   .test__progress-container {
@@ -284,6 +276,34 @@ input[type="radio"]:checked {
 
   .test__progress-labels {
     font-size: 14px;
+  }
+
+  .test__progress {
+    font-size: 14px;
+  }
+
+  .test__message--correct,
+  .test__message--incorrect {
+    height: auto;
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .test__subtitle--special {
+    font-size: 16px;
+    line-height: 19.5px;
+  }
+
+  .test__text--special {
+    font-size: 18px;
+    line-height: 25.2px;
+    margin: 10px 0;
+  }
+
+  .test__text {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 15px 0;
   }
 
   .test__button {

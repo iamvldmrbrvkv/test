@@ -7,7 +7,7 @@ export const Results = ({ data, refetch }) => {
       {correctAnswers > 8 && (
         <>
           <h1 className="test__title">Поздравляем! Вы успешно прошли тест!</h1>
-          <p className="test__text">
+          <p className="test__text--special">
             Вы правильно ответили на все вопросы. Вы действительно отлично
             разбираетесь в IT.
           </p>
@@ -16,7 +16,7 @@ export const Results = ({ data, refetch }) => {
       {correctAnswers > 4 && (
         <>
           <h1 className="test__title">Хороший результат!</h1>
-          <p className="test__text">
+          <p className="test__text--special">
             Вы ответили правильно на {correctAnswers} вопросов. Так держать!
           </p>
         </>
@@ -24,7 +24,7 @@ export const Results = ({ data, refetch }) => {
       {correctAnswers <= 4 && (
         <>
           <h1 className="test__title">Упс :(</h1>
-          <p className="test__text">
+          <p className="test__text--special">
             Вы неправильно ответили на {incorrectAnswers} вопросов. Нужно подучить
             теорию.
           </p>
@@ -35,7 +35,7 @@ export const Results = ({ data, refetch }) => {
           key={`question${index}`}
           className={`test__message--${question.correct ? "correct" : "incorrect"}`}
         >
-          <h2 className="test__subtitle">{question.question}</h2>
+          <h2 className="test__subtitle--special">{question.question}</h2>
           {question.answers.map((answer, i) =>
             answer.includes("(+)") && question.correct ? (
               <p key={`answer${index}`} className="test__text">
