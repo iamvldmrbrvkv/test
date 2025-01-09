@@ -13,7 +13,7 @@ export const Results = ({ data, refetch }) => {
           </p>
         </>
       )}
-      {correctAnswers > 4 && (
+      {correctAnswers > 4 && correctAnswers <= 8 && (
         <>
           <h1 className="test__title">Хороший результат!</h1>
           <p className="test__text--special">
